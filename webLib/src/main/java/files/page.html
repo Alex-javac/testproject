@@ -1,0 +1,125 @@
+<html STYLE="background-color: lightsteelblue ">
+
+<head>
+    <meta charset="utf-8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+    <style>
+        .button {
+            display: inline-block;
+            border-radius: 20px;
+            background-color: lightsteelblue;
+            border: 4px solid darkslategray;
+            color: darkslategray;
+            text-align: center;
+            font-size: 55px;
+            font-weight: bold;
+            font-family: KacstArt;
+            padding: 25px;
+            width: 300px;
+            transition: all 0.5s;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        .button span {
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            transition: 0.5s;
+        }
+
+        .button span:after {
+            content: '\00bb';
+            position: absolute;
+            opacity: 0;
+            top: 0;
+            right: -20px;
+            transition: 0.5s;
+        }
+
+        .button:hover span {
+            padding-right: 25px;
+        }
+
+        .button:hover span:after {
+            opacity: 1;
+            right: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+<div style="background-size: auto; background-color: lightsteelblue">
+
+    <div style="height: 10em; display: flex; align-items: center; justify-content: center">
+        <p style="font-size: 120px; font-weight: bold;font-family: KacstArt ;color: darkslategray; ">MOVIE SEARCH</p>
+    </div>
+
+    <div style=" display: flex; align-items: center; justify-content: center">
+        <input id="movieID" type="text" name="movieName" size="37"
+               style=" border: 4px solid darkslategray;
+               border-radius: 20px;
+               background-color: lightsteelblue;
+               font-size: 55px;
+               font-weight: bold;
+               font-family: KacstArt;
+               color: darkslategray;
+               text-align: center">
+    </div>
+
+    <div style="display: flex; align-items: center; justify-content: center">
+        <button id="buttonID" class="button" style="vertical-align:middle"
+                onclick="movie()">
+            <span> Search </span>
+        </button>
+    </div>
+
+    <div style=" display: flex; align-items: center; justify-content: center">
+        <blok id="movie" style="height: 800px;
+        width: 1000px;
+        justify-content: center;
+        text-align: center;
+        font-weight: bold;
+        font-family: KacstArt;
+        border: 4px solid darkslategray;
+        border-radius: 20px;
+        color: darkslategray;
+        background: lightsteelblue;
+        overflow-x: auto;"></blok>
+    </div>
+
+</div>
+</body>
+<script>
+    function movie() {
+        let apiKey = "8ed8cfd8bad6dc9c6b4b04ca68667d18";
+        let movieName = document.getElementById('movieID').value;
+        fetch('https://api.themoviedb.org/3/search/movie' + "?" + new URLSearchParams({
+            api_key: apiKey, page: 1, query: movieName
+        }))
+            .then(res => {
+                if (res.ok) {
+                    return res.json()
+                } else {
+                    console.log("ERROR!")
+                }
+            })
+            .then(data => {
+                let films = "";
+                for (const value of data.results) {
+                    console.log(value);
+                    films += "title: " + value.original_title + "<br>"
+                        +"<img src=\"https://www.themoviedb.org/t/p/w94_and_h141_bestv2"+value.poster_path+" \" alt=\" No poster \" />"+"<br>"
+                        + value.vote_average + "<br>"
+                        + value.overview + "<br>"
+                        + "date: " + value.release_date + "<br>"
+                        + "---------------------------------------------------------------------" + "<br>" + "<br>";
+                }
+                document.getElementById('movie').innerHTML = films;
+            })
+            .catch(error => console.log(error));
+    }
+</script>
+</html>
+

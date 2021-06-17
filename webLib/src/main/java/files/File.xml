@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<books xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="validator.xsd">
+    <list-books>
+    <book id="1">
+        <author>Джон Толкин</author>
+        <genre>FANTASY</genre>
+        <title>Властелин колец</title>
+    </book>
+    <book id="2">
+        <author>Михаил Булгаков</author>
+        <genre>CLASSIC</genre>
+        <title>Мастер и Маргарита</title>
+    </book>
+    <book id="3">
+        <author>Стиг Ларссон</author>
+        <genre>DETECTIVE</genre>
+        <title>Девушка с татуировкой дракона</title>
+    </book>
+    <book id="4">
+        <author>Александр Дюма</author>
+        <genre>HISTORICAL</genre>
+        <title>Три мушкетера</title>
+    </book>
+    <book id="5">
+        <author>Брэм Стокер</author>
+        <genre>HORROR</genre>
+        <title>ДРАКУЛА</title>
+    </book>
+    <book id="6">
+        <author>Уильям Шекспир</author>
+        <genre>ROMANCE</genre>
+        <title>Ромео и Джульетта</title>
+    </book>
+    </list-books>
+</books>
